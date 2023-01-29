@@ -1,5 +1,9 @@
 Part1
 =======
+
+StringServer Code
+-----
+
 Here is the code for my StringServer:
 
 ```
@@ -46,7 +50,42 @@ class StringServer {
 Screenshot1
 -----------
 
-![image](屏幕截图 2023-01-29 000930.png)
+![image](screenshot1.png)
+
+In this Screenshot, the method **handleRequest()** is called with the url shown in the screenshot.
+
+The relevent argument should be **Server.start(port, new Handler())**.
+
+The relevent values of fields include **str=""**, **url=null**, **parameters[]=null**.
+
+Once the request is made, the value of **url** is changed to **http://localhost:7777/add-message?s=Hello**.
+
+The value of **parameters[]** is changed to **{s, Hello}**. 
+
+The value of **str** is changed to **"Hello"**.
+
+Screenshot2
+-----
+
+![image](screenshot2.png)
+
+
+In this Screenshot, the method **handleRequest()** is called with the url shown in the screenshot.
+
+The relevent argument should be **Server.start(port, new Handler())**.
+
+The relevent values of fields include **str="Hello"**, **url=null**, **parameters[]=null**.
+
+Once the request is made, the value of **url** is changed to **http://localhost:7777/add-message?s=How20%are20%you**.
+
+The value of **parameters[]** is changed to **{s, How are you}**. 
+
+The value of **str** is changed to **"Hello\nHow are you"**.
+
+
+
+
+
 
 
 
