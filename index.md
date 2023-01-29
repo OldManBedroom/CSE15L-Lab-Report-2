@@ -82,12 +82,67 @@ The value of **parameters[]** is changed to **{s, How are you}**.
 
 The value of **str** is changed to **"Hello\nHow are you"**.
 
+Part2
+====
 
+I choose the bug in reverseInPlace method.
 
+Here is a failure-inducing input for this buggy program:
 
+```
+public void testReversedInPlace2(){
+    int[] input2 = {1,2,3};
+    ArrayExamples.reverseInPlace(input2);
+    assertArrayEquals(new int[]{3,2,1}, input2);
+}
+```
 
+Here is an input that doesn't induce a failure:
 
+```
+public void testReverseInPlace() {
+    int[] input1 = { 3 };
+    ArrayExamples.reverseInPlace(input1);
+    assertArrayEquals(new int[]{ 3 }, input1);
+}
+```
 
+Here is the Sympton of running the two tests provided above.
+
+The second test passed but the first test didn't.
+
+<img width="610" alt="image" src="https://user-images.githubusercontent.com/122486933/215355161-a2165291-1807-4291-80d6-02292221c6e7.png">
+
+Here is the code of reverseInPlace method before the bug is fixed:
+
+```
+static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length; i += 1) {
+        arr[i] = arr[arr.length - i - 1];
+    }
+}
+```
+
+Here is the code of reverseInPlace method after the bug is fixed:
+
+```
+static void reverseInPlace(int[] arr) {
+    int[] arrNew = new int[arr.length];
+    for(int i = 0; i < arr.length; i += 1) {
+        arrNew[i] = arr[arr.length - i - 1];
+    }
+    for(int i=0; i<arr.length; i++){
+        arr[i]=arrNew[i];
+    }
+}    
+```
+
+The bug for this method is that the reversing operation is done on the input array, which makes the array the same after the reverse is done. In the fixed method, the reverse is done on a new array that carries the same values as the input array and assign the new array to the input array after the reverse.
+
+Part3
+====
+
+The most important thing I learned in lab3 is that sometimes buggy programs can also past the test. Therefore, it is crucial to design different tests and inputs for a program. Consider special cases while testing. For example, what if the input is null or what if the input is a array with only one element. Testing these special inputs and fixing bugs caused by them will make the program moew reliable.
 
 
 
