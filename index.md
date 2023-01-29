@@ -46,7 +46,8 @@ class StringServer {
 Screenshot1
 -----------
 
-[image]()
+![image](屏幕截图 2023-01-29 000930.png)
+
 
 
 
