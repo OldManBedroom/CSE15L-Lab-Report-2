@@ -52,9 +52,13 @@ Screenshot1
 
 ![image](screenshot1.png)
 
-In this Screenshot, the method **handleRequest()** is called with the url shown in the screenshot.
+For this screenshot, the method **handleRequest()** is called with the provided url.
 
-The relevent argument should be **Server.start(port, new Handler())**.
+The relevent arguments are **Server.start(port, new Handler());** **server.createContext("/", new ServerHttpHandler(handler));** **String ret = handler.handleRequest(exchange.getRequestURI());**
+
+Once the **start()** mehtod is called, the **creatContext()** method is called to create a new handler.
+
+This handler is will call **handleRequest()** method
 
 The relevent values of fields include **str=""**, **url=null**, **parameters[]=null**.
 
@@ -70,13 +74,17 @@ Screenshot2
 ![image](screenshot2.png)
 
 
-In this Screenshot, the method **handleRequest()** is called with the url shown in the screenshot.
+For this screenshot, the method **handleRequest()** is called with the provided url.
 
-The relevent argument should be **Server.start(port, new Handler())**.
+The relevent arguments are **Server.start(port, new Handler());** **server.createContext("/", new ServerHttpHandler(handler));** **String ret = handler.handleRequest(exchange.getRequestURI());**
+
+Once the **start()** mehtod is called, the **creatContext()** method is called to create a new handler.
 
 The relevent values of fields include **str="Hello"**, **url=null**, **parameters[]=null**.
 
 Once the request is made, the value of **url** is changed to **http://localhost:7777/add-message?s=How20%are20%you**.
+
+The **20%** signs in this url mean **space** in url-encode.
 
 The value of **parameters[]** is changed to **{s, How are you}**. 
 
@@ -107,7 +115,7 @@ public void testReverseInPlace() {
 }
 ```
 
-Here is the Sympton of running the two tests provided above.
+Here is the Symptom of running the two tests provided above.
 
 The second test passed but the first test didn't.
 
@@ -136,13 +144,13 @@ static void reverseInPlace(int[] arr) {
     }
 }    
 ```
+The bug for this method is that the original array is not saved. Once half of the array is reversed, the first half of this array will just be like the second half of the array in reversed order, so when you try to reverse the second half of the array, the elements' values will not change. For example, if the original array is **[1,2,3,4,5,6]**, the reversed array will be **[6,5,4,4,5,6]**, not **[6,5,4,3,2,1]**. To fix this bug, I created a new array to save the reversed array so the original array won't be changed. during the reversing, Each value of the new array is assigned with the value of the original array in reversed order. After the reverse, the new array will be assigned to the original array. Now the original array is in reversed order.
 
-The bug for this method is that the reversing operation is done on the input array, which makes the array the same after the reverse is done. In the fixed method, the reverse is done on a new array that carries the same values as the input array and assign the new array to the input array after the reverse.
 
 Part3
 ====
 
-The most important thing I learned in lab3 is that sometimes buggy programs can also past the test. Therefore, it is crucial to design different tests and inputs for a program. Consider special cases while testing. For example, what if the input is null or what if the input is a array with only one element. Testing these special inputs and fixing bugs caused by them will make the program moew reliable.
+The most important thing I learned in lab3 is that sometimes buggy programs can also past the test. Therefore, it is crucial to design different tests and inputs for a program. Consider special cases while testing. For example, what if the input is null or what if the input is a array with only one element. Testing these special inputs and fixing bugs caused by them will make the program m reliable.
 
 
 
